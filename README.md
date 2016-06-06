@@ -37,7 +37,7 @@ Demo video for ReceiptOCR: https://www.youtube.com/watch?v=canl7X8j7J0&feature=y
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Build App Instruction
 - Download MicroBlink Archive from this link: https://drive.google.com/file/d/0B_rXIv9tsF-8cDdTSUMtbHdBUUE/view?usp=sharing and unzip to source code folder
-- [Generate](https://microblink.com/login?url=/customer/generatedemolicence) a **free demo license key** to start using the SDK in your app (registration required)
+- [Generate](https://microblink.com/login?url=/customer/generatedemolicence) a **free demo license key** to start using the SDK in app (registration required) - 1 license key work with 1 app indentifier only
 - OCR work only on real-device with camera support
 ## Notes
 
