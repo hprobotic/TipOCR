@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PPCameraOverlayViewController" customModule="Tip" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="framebg" translatesAutoresizingMaskIntoConstraints="NO" id="7iH-FN-k5b">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aWb-Q3-wJX">
+                    <rect key="frame" x="135" y="617" width="104" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="LSb-aR-p13"/>
+                        <constraint firstAttribute="height" constant="30" id="lGl-Xl-xsq"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="Cancel-101"/>
+                    <connections>
+                        <action selector="onTapClose:" destination="-1" eventType="touchUpInside" id="ewE-PW-AzW"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="7iH-FN-k5b" secondAttribute="bottom" id="Hwy-Pi-atU"/>
+                <constraint firstItem="aWb-Q3-wJX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="S5B-Yd-E1N"/>
+                <constraint firstItem="7iH-FN-k5b" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="czH-PI-Cog"/>
+                <constraint firstAttribute="bottom" secondItem="aWb-Q3-wJX" secondAttribute="bottom" constant="10" id="g0L-rn-oH4"/>
+                <constraint firstItem="7iH-FN-k5b" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hD1-Qa-I1i"/>
+                <constraint firstAttribute="trailing" secondItem="7iH-FN-k5b" secondAttribute="trailing" id="tW6-1z-Ul3"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="564.5" y="437.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Cancel-101" width="50" height="50"/>
+        <image name="framebg" width="750" height="750"/>
+    </resources>
+</document>
