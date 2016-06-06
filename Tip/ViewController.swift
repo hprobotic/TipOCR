@@ -19,11 +19,14 @@ class MasterViewController: UIViewController, UITextFieldDelegate, PPScanDelegat
   @IBOutlet weak var tipAmount: UILabel!
   @IBOutlet weak var exactTotalLabel: UILabel!
   
+  @IBOutlet weak var defaultTipPercentangeLabel: UILabel!
   @IBOutlet weak var currency: UILabel!
   @IBOutlet weak var billAmountView: UIView!
   @IBOutlet weak var sliderView: UIView!
   @IBOutlet weak var calDetailView: UIView!
   @IBOutlet weak var scanView: UIView!
+  @IBOutlet weak var optionsView: UIView!
+  @IBOutlet weak var tipPercentageOptionSlider: UISlider!
   var isHideView = true
   var rawOcrParserId : String = "Raw ocr"
   var priceParserId : String = "Price"
@@ -32,67 +35,35 @@ class MasterViewController: UIViewController, UITextFieldDelegate, PPScanDelegat
   var people = [NSManagedObject]()
   
   
-  // Animate func
-  // Hide element when open app
-  func initHidding(sY: CGFloat,cY: CGFloat) {
-    
-    self.sliderView.center.y = sY + 1000
-    self.calDetailView.center.y = cY + 1000
-    
-  }
-  
-  // Hide item when clear input
-  func hideOnClearInput(sY: CGFloat, cY: CGFloat) {
-    UIView.animateWithDuration(0.5, animations: {
-      self.sliderView.center.y = sY + 1000
-      
-      }, completion: nil)
-    UIView.animateWithDuration(0.25, animations: {
-      self.calDetailView.center.y = cY + 1000
-      }, completion: nil)
-  }
-  
-  // Show item when input data
-  func showOnInputData(sY: CGFloat,cY: CGFloat) {
-    UIView.animateWithDuration(0.25, animations: {
-      self.sliderView.center.y = sY + 1000
-      
-      }, completion: nil)
-    UIView.animateWithDuration(0.5, animations: {
-      self.calDetailView.center.y = cY + 1000
-      }, completion: nil)
-    
-  }
   
   // Tip calculator values update
   
   func tipCalValuesUpdate(sY: CGFloat,cY: CGFloat, isScanned: Bool, scannedValue: Int) -> (Double, Double) {
     // Check input amout is valid
     var isInputValid = textField(billAmountField, shouldChangeCharactersInRange: NSRange(location: 3, length: 2), replacementString: "")
-    
     let tipPercentageValue = tipPercentage.value
     tipPercentageLabel.text = String(format: "$%.1f", tipPercentageValue*100)
     if isScanned {
       billAmountField.text = String(scannedValue)
+      showElement()
+      isHideView = false
       isInputValid = true
     }
     if isInputValid &&  Double(billAmountField.text!) > 0 {
+      if isHideView {
+        showElement()
+        isHideView = false
+      }
       let billAmountTotal = Double(billAmountField.text!)
       let tipAmount = billAmountTotal! * Double(tipPercentageValue)
       let exactTotalAmount = billAmountTotal! + tipAmount
-      if isHideView {
-        showOnInputData(sY, cY: cY)
-        isHideView = false
-      }
+      
       tipAmountLabel.text = String(tipAmount.asLocaleCurrency)
       exactTotalLabel.text = String(ceil(exactTotalAmount).asLocaleCurrency)
       
       return (billAmountTotal!, Double(tipPercentageValue))
     } else {
-      if !isHideView {
-        hideOnClearInput(sY, cY: cY)
-        isHideView = true
-      }
+      hideInneedElement()
       tipAmountLabel.text = "$0.00"
       exactTotalLabel.text = "$0.00"
       return(0,0)
@@ -105,22 +76,84 @@ class MasterViewController: UIViewController, UITextFieldDelegate, PPScanDelegat
     var theLocale: NSLocale = NSLocale.currentLocale()
     let currencySymbol = theLocale.objectForKey(NSLocaleCurrencySymbol)
     currency.text = String("\(currencySymbol!)")
-    
-    
-    
-    
     billAmountField.delegate = self
     billAmountField.keyboardType = .NumberPad
-    // Hide element when application launch
-    let sYOrigin = self.sliderView.frame.origin.y
-    let cYOrigin = self.calDetailView.frame.origin.y
+    optionsView.transform = CGAffineTransformMakeTranslation(0, 500)
+    sliderView.transform = CGAffineTransformMakeTranslation(0, 500)
+    calDetailView.transform = CGAffineTransformMakeTranslation(0, 500)
     
-    print(sYOrigin, cYOrigin)
-    initHidding(sYOrigin, cY: cYOrigin)
+     
     // Do any additional setup after loading the view, typically from a nib.
   }
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    
+   
+    
+    
+  }
+  override func viewDidDisappear(animated: Bool) {
+    
+  }
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+  }
+  func showElement() {
+    UIView.animateWithDuration(1, delay: 0.0, usingSpringWithDamping: 0.5,
+                               initialSpringVelocity: 0.5, options: [], animations: {
+                                self.sliderView.transform = CGAffineTransformMakeScale(1, 1)
+      }, completion: nil)
+    UIView.animateWithDuration(1, delay: 0.5, usingSpringWithDamping: 0.5,
+                               initialSpringVelocity: 0.5, options: [], animations: {
+                                self.calDetailView.transform = CGAffineTransformMakeScale(1, 1)
+      }, completion: nil)
+    
+  }
+  func hideInneedElement() {
+    UIView.animateWithDuration(1, delay: 0.5, usingSpringWithDamping: 0.5,
+                               initialSpringVelocity: 0.5, options: [], animations: {
+                                self.sliderView.transform = CGAffineTransformMakeTranslation(0, 500)
+      }, completion: nil)
+    UIView.animateWithDuration(1, delay: 0.0, usingSpringWithDamping: 0.5,
+                               initialSpringVelocity: 0.5, options: [], animations: {
+                                self.calDetailView.transform = CGAffineTransformMakeTranslation(0, 500)
+      }, completion: nil)
+  }
+  
+  
+  
+  
+  func showOptions() {
+    UIView.animateWithDuration(1, delay: 0.0, usingSpringWithDamping: 0.5,
+                               initialSpringVelocity: 0.3, options: [], animations: {
+                                self.optionsView.transform = CGAffineTransformMakeScale(1, 1)
+      }, completion: nil)
+  }
+  func hideOptions() {
+    UIView.animateWithDuration(1, delay: 0.0, usingSpringWithDamping: 0.5,
+                               initialSpringVelocity: 0.3, options: [], animations: {
+                                self.optionsView.transform = CGAffineTransformMakeTranslation(0, 500)
+      }, completion: nil)
+    
+  }
+  
+  
   // Mark: Actions
   
+  @IBAction func onOpensSetting(sender: AnyObject) {
+    showOptions()
+  }
+  @IBAction func onSaveOption(sender: AnyObject) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setDouble(Double(tipPercentageOptionSlider.value), forKey: "default_tip_percentage")
+    hideOptions()
+    
+  }
+  @IBAction func onPercentageOptionSliderChanged(sender: AnyObject) {
+    defaultTipPercentangeLabel.text = "\(Int(tipPercentageOptionSlider.value*100))%"
+  }
   @IBAction func onBillAmoutChanged(sender: AnyObject) {
     let sYOrigin = self.sliderView.frame.origin.y
     let cYOrigin = self.calDetailView.frame.origin.y
@@ -129,10 +162,8 @@ class MasterViewController: UIViewController, UITextFieldDelegate, PPScanDelegat
   
   
   @IBAction func onTap(sender: AnyObject) {
-    print("tap")
-    if !isHideView {
       self.view.endEditing(true)
-    }
+      hideOptions()
   }
   
   
@@ -271,12 +302,12 @@ class MasterViewController: UIViewController, UITextFieldDelegate, PPScanDelegat
           return rtnVal
         }
         let formatedValue = converStrToNum(strArr)
-        if formatedValue > 0 {
-          print(formatedValue)
+        if formatedValue > 0 { 
           var refreshAlert = UIAlertController(title: "Bill Amout:\(formatedValue)", message: "It oke?", preferredStyle: UIAlertControllerStyle.Alert)
           refreshAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
             self.scanningViewControllerDidClose(scanningViewController!)
             self.tipCalValuesUpdate(0, cY: 0, isScanned: true, scannedValue: formatedValue)
+            
           }))
           
           refreshAlert.addAction(UIAlertAction(title: "Re-scan", style: .Cancel, handler: { (action: UIAlertAction!) in
@@ -341,8 +372,8 @@ class MasterViewController: UIViewController, UITextFieldDelegate, PPScanDelegat
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let managedContext = appDelegate.managedObjectContext
     let entity = NSEntityDescription.entityForName("PayList", inManagedObjectContext: managedContext)
-    print("test")
     let payItem = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+    
     payItem.setValue(billAmount, forKey: "billAmount")
     do {
       try managedContext.save()

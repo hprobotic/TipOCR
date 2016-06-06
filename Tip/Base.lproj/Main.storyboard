@@ -21,7 +21,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M13-Np-Aa4">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="uSz-yX-hG7">
+                                    <navigationItem title="History" id="uSz-yX-hG7">
                                         <barButtonItem key="leftBarButtonItem" image="Back-100" id="a1c-gM-5kv">
                                             <inset key="imageInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                             <connections>
@@ -88,14 +88,19 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.2274509804" green="0.26274509800000001" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="65V-Cw-gxJ" id="5If-Ii-edw"/>
+                                            <outlet property="payAmount" destination="rpG-dV-6M1" id="ZcQ-dX-4tO"/>
+                                            <outlet property="payItemView" destination="Y2b-Ff-AdX" id="XYA-Pg-PDY"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7X7-bf-00X">
                                 <rect key="frame" x="0.0" y="686" width="414" height="50"/>
-                                <color key="backgroundColor" red="0.92549019610000005" green="0.019607843140000001" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.35294117650000001" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                <state key="normal" title="RESET">
+                                <state key="normal" title="Reset">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
@@ -121,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="98k-qS-JGl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="598" y="428"/>
+            <point key="canvasLocation" x="1682" y="428"/>
         </scene>
         <!--Tipsy-->
         <scene sceneID="tne-QT-ifu">
@@ -138,8 +143,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ca-cd-28T" userLabel="billAmountView">
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bill amount:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNP-zc-OFe">
-                                        <rect key="frame" x="8" y="6" width="398" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bill amount:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNP-zc-OFe">
+                                        <rect key="frame" x="8" y="6" width="398" height="23"/>
                                         <gestureRecognizers/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -205,23 +210,23 @@
                                         <color key="textColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="0.18862980769230769" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="y8Q-ka-was">
-                                        <rect key="frame" x="54" y="42" width="306" height="31"/>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="y8Q-ka-was">
+                                        <rect key="frame" x="54" y="44" width="306" height="31"/>
                                         <color key="minimumTrackTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="thumbTintColor" red="0.90196078430000004" green="0.29803921570000003" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="onSliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="bau-Nz-iHN"/>
                                         </connections>
                                     </slider>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Sad-50" translatesAutoresizingMaskIntoConstraints="NO" id="Dob-F4-fAK">
-                                        <rect key="frame" x="8" y="42" width="30" height="30"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sad-50" translatesAutoresizingMaskIntoConstraints="NO" id="Dob-F4-fAK">
+                                        <rect key="frame" x="8" y="44" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="0UC-ow-apo"/>
                                             <constraint firstAttribute="width" constant="30" id="0dm-Rl-34i"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="How was your service" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggV-Kq-aWy">
-                                        <rect key="frame" x="8" y="13" width="398" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How was your service" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggV-Kq-aWy">
+                                        <rect key="frame" x="8" y="13" width="398" height="23"/>
                                         <gestureRecognizers/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -230,8 +235,8 @@
                                             <outletCollection property="gestureRecognizers" destination="gsc-l5-9fH" appends="YES" id="Dyt-BQ-saC"/>
                                         </connections>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Happy-50" translatesAutoresizingMaskIntoConstraints="NO" id="naC-KQ-g4E">
-                                        <rect key="frame" x="376" y="42" width="30" height="30"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Happy-50" translatesAutoresizingMaskIntoConstraints="NO" id="naC-KQ-g4E">
+                                        <rect key="frame" x="376" y="44" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="l1A-6H-uKM"/>
                                             <constraint firstAttribute="height" constant="30" id="lRR-Pe-s0I"/>
@@ -301,10 +306,10 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCH-8o-Pcc" userLabel="ScanView">
-                                <rect key="frame" x="0.0" y="656" width="414" height="80"/>
+                                <rect key="frame" x="0.0" y="676" width="414" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pY0-ca-c9w">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
                                         <state key="normal" title="SAVE">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -315,19 +320,73 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.2470588235" green="0.70196078429999997" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.35294117650000001" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="pY0-ca-c9w" firstAttribute="top" secondItem="fCH-8o-Pcc" secondAttribute="top" id="11H-9k-TiX"/>
-                                    <constraint firstAttribute="height" constant="80" id="LLh-5Z-vOt"/>
+                                    <constraint firstAttribute="height" constant="60" id="LLh-5Z-vOt"/>
                                     <constraint firstAttribute="trailing" secondItem="pY0-ca-c9w" secondAttribute="trailing" id="bnX-SK-OQd"/>
                                     <constraint firstItem="pY0-ca-c9w" firstAttribute="leading" secondItem="fCH-8o-Pcc" secondAttribute="leading" id="d3T-bl-L5n"/>
                                     <constraint firstAttribute="bottom" secondItem="pY0-ca-c9w" secondAttribute="bottom" id="m8k-Ue-Nlk"/>
+                                </constraints>
+                            </view>
+                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vzd-SH-g8y" userLabel="OptionsView">
+                                <rect key="frame" x="0.0" y="536" width="414" height="200"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default tip percentage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAu-e2-Bsi">
+                                        <rect key="frame" x="0.0" y="21" width="414" height="23"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <color key="textColor" red="0.92549019610000005" green="0.019607843140000001" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Vmk-1I-d0u">
+                                        <rect key="frame" x="23" y="65" width="368" height="31"/>
+                                        <connections>
+                                            <action selector="onPercentageOptionSliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="fxI-PN-XfT"/>
+                                        </connections>
+                                    </slider>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6p-YF-TDz">
+                                        <rect key="frame" x="0.0" y="150" width="414" height="50"/>
+                                        <color key="backgroundColor" red="1" green="0.35294117650000001" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="XEg-l3-PId"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onSaveOption:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A4h-D2-w19"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="25%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ygl-bp-gPk">
+                                        <rect key="frame" x="195" y="110" width="33" height="21"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Vmk-1I-d0u" firstAttribute="top" secondItem="PAu-e2-Bsi" secondAttribute="bottom" constant="21" id="5Go-i7-jwr"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vmk-1I-d0u" secondAttribute="trailing" constant="25" id="6Od-tI-Wdl"/>
+                                    <constraint firstAttribute="height" constant="200" id="BPs-aN-U2g"/>
+                                    <constraint firstAttribute="trailing" secondItem="PAu-e2-Bsi" secondAttribute="trailing" id="InK-8j-HC2"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ygl-bp-gPk" secondAttribute="trailing" id="OG4-SG-q4R"/>
+                                    <constraint firstItem="Ygl-bp-gPk" firstAttribute="leading" secondItem="Vzd-SH-g8y" secondAttribute="leading" id="Vlf-Zz-pTr"/>
+                                    <constraint firstAttribute="bottom" secondItem="b6p-YF-TDz" secondAttribute="bottom" id="gU6-VB-GBN"/>
+                                    <constraint firstItem="PAu-e2-Bsi" firstAttribute="leading" secondItem="Vzd-SH-g8y" secondAttribute="leading" id="hB8-ze-cHa"/>
+                                    <constraint firstItem="Ygl-bp-gPk" firstAttribute="top" secondItem="Vmk-1I-d0u" secondAttribute="bottom" constant="15" id="jkL-7s-d5y"/>
+                                    <constraint firstItem="b6p-YF-TDz" firstAttribute="leading" secondItem="Vzd-SH-g8y" secondAttribute="leading" id="kmH-cZ-ztr"/>
+                                    <constraint firstItem="Vmk-1I-d0u" firstAttribute="leading" secondItem="Vzd-SH-g8y" secondAttribute="leading" constant="25" id="lKr-kc-tV4"/>
+                                    <constraint firstAttribute="trailing" secondItem="b6p-YF-TDz" secondAttribute="trailing" id="ne7-Gj-9W1"/>
+                                    <constraint firstItem="PAu-e2-Bsi" firstAttribute="top" secondItem="Vzd-SH-g8y" secondAttribute="top" constant="21" id="wn5-5K-kum"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94509803921568625" green="0.2627450980392157" blue="0.24705882352941178" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Vzd-SH-g8y" secondAttribute="bottom" id="5X3-Cu-cka"/>
                             <constraint firstAttribute="bottom" secondItem="PUh-EP-Car" secondAttribute="bottom" constant="-614" id="80c-Qj-VUN"/>
                             <constraint firstItem="fCH-8o-Pcc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="93k-Uv-LNb"/>
                             <constraint firstAttribute="trailing" secondItem="fCH-8o-Pcc" secondAttribute="trailing" id="DhF-OR-6um"/>
@@ -339,8 +398,10 @@
                             <constraint firstItem="PUh-EP-Car" firstAttribute="top" secondItem="yMo-g8-Add" secondAttribute="bottom" constant="118" id="eAf-iW-M9y"/>
                             <constraint firstItem="PUh-EP-Car" firstAttribute="trailing" secondItem="8ca-cd-28T" secondAttribute="trailing" id="fct-re-bwf"/>
                             <constraint firstItem="Ra9-SS-OyN" firstAttribute="top" secondItem="yMo-g8-Add" secondAttribute="bottom" constant="204" id="mFp-wF-BDX"/>
+                            <constraint firstAttribute="trailing" secondItem="Vzd-SH-g8y" secondAttribute="trailing" id="qlW-Tf-oe6"/>
                             <constraint firstItem="8ca-cd-28T" firstAttribute="bottom" secondItem="9JR-uA-SiN" secondAttribute="top" id="tKf-qG-6YR"/>
                             <constraint firstItem="8ca-cd-28T" firstAttribute="top" secondItem="yMo-g8-Add" secondAttribute="bottom" id="u4N-C4-xnj"/>
+                            <constraint firstItem="Vzd-SH-g8y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="udH-yx-ovW"/>
                             <constraint firstItem="9JR-uA-SiN" firstAttribute="top" secondItem="fCH-8o-Pcc" secondAttribute="bottom" id="zhT-ec-JbN"/>
                         </constraints>
                         <connections>
@@ -359,7 +420,7 @@
                             <inset key="imageInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="lmQ-Tf-JQO" kind="presentation" id="Wd7-kd-v6D"/>
+                                <action selector="onOpensSetting:" destination="BYZ-38-t0r" id="21E-00-yAl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -370,13 +431,16 @@
                         <outlet property="billAmountView" destination="8ca-cd-28T" id="TlL-pt-Ahi"/>
                         <outlet property="calDetailView" destination="Ra9-SS-OyN" id="Mcs-K6-4SJ"/>
                         <outlet property="currency" destination="N41-S6-ZNq" id="eNG-qW-CU0"/>
+                        <outlet property="defaultTipPercentangeLabel" destination="Ygl-bp-gPk" id="KCC-Y9-7ly"/>
                         <outlet property="exactTotalLabel" destination="OyY-Rh-mUm" id="TJ7-uA-c3c"/>
+                        <outlet property="optionsView" destination="Vzd-SH-g8y" id="amK-zs-ltG"/>
                         <outlet property="scanView" destination="fCH-8o-Pcc" id="Cum-hK-hQo"/>
                         <outlet property="sliderView" destination="PUh-EP-Car" id="c8E-Yu-flh"/>
                         <outlet property="tipAmount" destination="HgU-ca-170" id="PHN-W6-bza"/>
                         <outlet property="tipAmountLabel" destination="HgU-ca-170" id="oFK-12-NHQ"/>
                         <outlet property="tipPercentage" destination="y8Q-ka-was" id="e8b-9d-OSw"/>
                         <outlet property="tipPercentageLabel" destination="1f0-58-e58" id="vCo-Xe-KHC"/>
+                        <outlet property="tipPercentageOptionSlider" destination="Vmk-1I-d0u" id="jzS-bQ-G2J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -402,41 +466,6 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1171" y="428"/>
-        </scene>
-        <!--Setting View Controller-->
-        <scene sceneID="ZyX-FJ-Yox">
-            <objects>
-                <viewController id="lmQ-Tf-JQO" customClass="SettingViewController" customModule="Tip" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3dV-H7-6ot"/>
-                        <viewControllerLayoutGuide type="bottom" id="lhP-em-0iy"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ahT-tS-d0M">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fh7-N4-5jU">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <items>
-                                    <navigationItem title="Settings" id="8mg-O7-9YX">
-                                        <barButtonItem key="leftBarButtonItem" image="Back-100" id="gEr-I6-Slr">
-                                            <inset key="imageInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="fh7-N4-5jU" firstAttribute="top" secondItem="ahT-tS-d0M" secondAttribute="top" id="GJa-bv-Q8Z"/>
-                            <constraint firstItem="fh7-N4-5jU" firstAttribute="leading" secondItem="ahT-tS-d0M" secondAttribute="leading" id="vii-95-Ze1"/>
-                            <constraint firstAttribute="trailing" secondItem="fh7-N4-5jU" secondAttribute="trailing" id="xbx-La-wcd"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="clL-Lm-k9G" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1663" y="428"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aIj-V0-wAG">

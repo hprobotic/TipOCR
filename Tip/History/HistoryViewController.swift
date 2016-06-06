@@ -29,7 +29,19 @@ class HistoryViewController: UIViewController {
     resfreshControl = UIRefreshControl()
     resfreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
     tableView.insertSubview(resfreshControl, atIndex: 0)
-    fetchData()
+    
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let managedContext = appDelegate.managedObjectContext
+    let fetchRequest = NSFetchRequest(entityName: "PayList")
+    do {
+      let results =
+        try managedContext.executeFetchRequest(fetchRequest)
+      payList = results as! [NSManagedObject]
+      self.tableView.reloadData()
+    } catch let error as NSError {
+      print("Could not fetch \(error), \(error.userInfo)")
+    }
+    
   }
   @IBAction func onBackBtn(sender: AnyObject) {
     self.dismissViewControllerAnimated(true, completion: nil)
@@ -43,15 +55,14 @@ class HistoryViewController: UIViewController {
   }
   
   private func fetchData() {
-    let appDelegate =
-      UIApplication.sharedApplication().delegate as! AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let managedContext = appDelegate.managedObjectContext
     let fetchRequest = NSFetchRequest(entityName: "PayList")
     do {
       let results =
-        try managedContext.executeFetchRequest(fetchRequest)
-          payList = results as! [NSManagedObject]
-      print(payList)
+      try managedContext.executeFetchRequest(fetchRequest)
+      payList = results as! [NSManagedObject]
+      self.tableView.reloadData()
     } catch let error as NSError {
       print("Could not fetch \(error), \(error.userInfo)")
     }
@@ -77,7 +88,8 @@ extension HistoryViewController: UITableViewDataSource {
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("payCell") as! PayCell
     let payItem = payList[indexPath.row]
-    cell.textLabel!.text = payItem.valueForKey("billAmount") as? String
+    print(payItem)
+    cell.payAmount!.text = payItem.valueForKey("billAmount") as? String
     
     return cell
   }
