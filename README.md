@@ -24,13 +24,15 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [x] Scan receipt with BlinkOCR
-- [] Save scan data use CoreData (Incompleted)
+- [ ] Save scan data use CoreData (Incompleted)
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
 ![Video Walkthrough](normal.gif)
+
+Demo video for ReceiptOCR: https://www.youtube.com/watch?v=canl7X8j7J0&feature=youtu.be
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
