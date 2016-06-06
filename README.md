@@ -35,10 +35,14 @@ Here's a walkthrough of implemented user stories:
 Demo video for ReceiptOCR: https://www.youtube.com/watch?v=canl7X8j7J0&feature=youtu.be
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
-
+## Build App Instruction
+- Download MicroBlink Archive from this link: https://drive.google.com/file/d/0B_rXIv9tsF-8cDdTSUMtbHdBUUE/view?usp=sharing and unzip to source code folder
+- [Generate](https://microblink.com/login?url=/customer/generatedemolicence) a **free demo license key** to start using the SDK in your app (registration required)
+- OCR work only on real-device with camera support
 ## Notes
 
-Describe any challenges encountered while building the app.
+BlinkOCR is hard for implement without document
+
 
 ## License
 
