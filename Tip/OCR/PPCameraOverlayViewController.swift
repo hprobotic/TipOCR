@@ -13,7 +13,7 @@ class PPCameraOverlayViewController: PPOverlayViewController {
   var tourchOn : Bool = false;
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.scanningRegion = CGRectMake(0.15, 0.45, 0.7, 0.1)
+    self.scanningRegion = CGRectMake(0.1, 0.45, 0.8, 0.1)
     
     // Do any additional setup after loading the view.
   }

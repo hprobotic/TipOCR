@@ -42,11 +42,13 @@ class MasterViewController: UIViewController, UITextFieldDelegate, PPScanDelegat
     // Check input amout is valid
     var isInputValid = textField(billAmountField, shouldChangeCharactersInRange: NSRange(location: 3, length: 2), replacementString: "")
     let tipPercentageValue = tipPercentage.value
-    tipPercentageLabel.text = String(format: "$%.1f", tipPercentageValue*100)
+    tipPercentageLabel.text = String(format: "%.1f%%", tipPercentageValue*100)
     if isScanned {
       billAmountField.text = String(scannedValue)
-      showElement()
-      isHideView = false
+      if isHideView {
+        showElement()
+        isHideView = false
+      }
       isInputValid = true
     }
     if isInputValid &&  Double(billAmountField.text!) > 0 {
@@ -63,7 +65,10 @@ class MasterViewController: UIViewController, UITextFieldDelegate, PPScanDelegat
       
       return (billAmountTotal!, Double(tipPercentageValue))
     } else {
-      hideInneedElement()
+      if !isHideView {
+        hideInneedElement()
+        isHideView = true
+      }
       tipAmountLabel.text = "$0.00"
       exactTotalLabel.text = "$0.00"
       return(0,0)
@@ -84,6 +89,17 @@ class MasterViewController: UIViewController, UITextFieldDelegate, PPScanDelegat
     
      
     // Do any additional setup after loading the view, typically from a nib.
+    
+    let defaults = NSUserDefaults.standardUserDefaults()
+    let tipPercentageDf = defaults.doubleForKey("tipPercentage")
+    print(tipPercentageDf)
+    tipPercentageOptionSlider.value = (Float)(tipPercentageDf)
+    tipPercentage.value = (Float)(tipPercentageDf)
+    defaultTipPercentangeLabel.text = String(format: "%d %%", Int(tipPercentageDf*100) )
+    tipPercentageLabel.text = String(format: "%d %%", Int(tipPercentageDf*100) )
+    
+    
+    
   }
   
   override func viewDidAppear(animated: Bool) {
@@ -101,11 +117,11 @@ class MasterViewController: UIViewController, UITextFieldDelegate, PPScanDelegat
     
   }
   func showElement() {
-    UIView.animateWithDuration(1, delay: 0.0, usingSpringWithDamping: 0.5,
+    UIView.animateWithDuration(1, delay: 0.0, usingSpringWithDamping: 0.2,
                                initialSpringVelocity: 0.5, options: [], animations: {
                                 self.sliderView.transform = CGAffineTransformMakeScale(1, 1)
       }, completion: nil)
-    UIView.animateWithDuration(1, delay: 0.5, usingSpringWithDamping: 0.5,
+    UIView.animateWithDuration(1, delay: 0.5, usingSpringWithDamping: 0.2,
                                initialSpringVelocity: 0.5, options: [], animations: {
                                 self.calDetailView.transform = CGAffineTransformMakeScale(1, 1)
       }, completion: nil)
@@ -146,13 +162,20 @@ class MasterViewController: UIViewController, UITextFieldDelegate, PPScanDelegat
     showOptions()
   }
   @IBAction func onSaveOption(sender: AnyObject) {
-    let defaults = NSUserDefaults.standardUserDefaults()
-    defaults.setDouble(Double(tipPercentageOptionSlider.value), forKey: "default_tip_percentage")
+    
+    
+    
     hideOptions()
     
   }
   @IBAction func onPercentageOptionSliderChanged(sender: AnyObject) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setDouble(Double(tipPercentageOptionSlider.value), forKey: "tipPercentage")
+    defaults.synchronize()
+    
+    print(defaults.doubleForKey("tipPercentage"))
     defaultTipPercentangeLabel.text = "\(Int(tipPercentageOptionSlider.value*100))%"
+    
   }
   @IBAction func onBillAmoutChanged(sender: AnyObject) {
     let sYOrigin = self.sliderView.frame.origin.y
